@@ -620,7 +620,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7158331296672138867, guid: 021020fab852bf64e866a5c6bb22b3da, type: 3}
       propertyPath: m_Name
-      value: PF_CapuchinoAssassino
+      value: PFV_CapuchinoAssassino
       objectReference: {fileID: 0}
     - target: {fileID: 7501959932770786505, guid: 021020fab852bf64e866a5c6bb22b3da, type: 3}
       propertyPath: m_LocalPosition.x
