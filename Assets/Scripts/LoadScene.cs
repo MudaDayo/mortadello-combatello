@@ -7,4 +7,9 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
