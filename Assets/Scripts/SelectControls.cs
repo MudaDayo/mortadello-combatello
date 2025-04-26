@@ -68,7 +68,7 @@ public class SelectControls : MonoBehaviour
                 body1.SetActive(false);
                 body2.SetActive(true);
 
-                body = body2.transform; // Set the body to the second character's transform
+                animator = body2.GetComponent<Animator>();
             }
             else if (transform.position.x <= 0f)
             {
@@ -76,7 +76,8 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(true);
                 body2.SetActive(false);
-                body = body1.transform; // Set the body to the first character's transform
+
+                animator = body1.GetComponent<Animator>();
             }
         }
         else if (PlayerNumber == 2)
@@ -87,7 +88,8 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(false);
                 body2.SetActive(true);
-                body = body2.transform;
+
+                animator = body2.GetComponent<Animator>();
             }
             else if (transform.position.x <= 0f)
             {
@@ -95,7 +97,8 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(true);
                 body2.SetActive(false);
-                body = body1.transform;
+
+                animator = body1.GetComponent<Animator>();
             }
         }
     }
@@ -144,33 +147,44 @@ public class SelectControls : MonoBehaviour
         }}
 
         private void Movement(){
-            // Apply gravity
-            if (!IsGrounded())
-            {
+
+
+        // Apply gravity
+        if (!IsGrounded())
+        {
             rb.AddForce(new Vector3(0, -gravity, 0), ForceMode.Acceleration);
-            }
+        }
 
-            Vector3 move = new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
 
-            transform.Translate(move, Space.World);
+        //jump
+        if (IsGrounded() && moveInput.y > 0.3f)
+        {
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            
+            // jump vfx
+            //Instantiate(jumpVFXPrefab, transform.position, Quaternion.identity);
+        }
 
-            if (move.x != 0 || move.z != 0)
-            {
+        transform.Translate(move, Space.World);
+        //Debug.Log(move);
+        if (move.x > 0 || move.x < 0)
+        {
             animator.SetBool("moving", true);
-            }
-            else
-            {
+        }
+        else
+        {
             animator.SetBool("moving", false);
-            }
+        }
 
-            if (move.x > 0)
-            {
+        if (move.x > 0)
+        {
             transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if (move.x < 0)
-            {
+        }
+        else if (move.x < 0)
+        {
             transform.localScale = new Vector3(-1, 1, 1);
-            }
+        }
         }
 
         private bool IsGrounded()
