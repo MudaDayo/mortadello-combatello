@@ -61,15 +61,6 @@ public class PlayerControls : MonoBehaviour
         }}
 
         private void Movement(){
-            if(moveInput.x != 0)
-            {
-                animator.SetBool("moving", true);
-            }
-            else
-            {
-                animator.SetBool("moving", false);
-            }
-
             // Apply gravity
             if(!IsGrounded())
             {
@@ -79,12 +70,21 @@ public class PlayerControls : MonoBehaviour
             Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
 
             //jump
-            if (IsGrounded() && moveInput.y > 0)
+            if (IsGrounded() && moveInput.y > 0.3f)
             {
                 rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
 
         transform.Translate(move, Space.World);
+        Debug.Log(move);
+        if(move.x > 0 || move.x < 0)
+            {
+                animator.SetBool("moving", true);
+            }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
         }
 
         private bool IsGrounded()
