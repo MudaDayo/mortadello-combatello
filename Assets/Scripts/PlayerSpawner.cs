@@ -12,6 +12,13 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SpawnPlayers();
+
+        playerManager = FindFirstObjectByType<PlayerManager>();
+        playerManager.playerSpawner = this; // Assign this PlayerSpawner instance to the PlayerManager  
+    }
+
+    public void SpawnPlayers(){
         playerManager = FindFirstObjectByType<PlayerManager>();
 
         if (playerManager == null)
@@ -40,11 +47,5 @@ public class PlayerSpawner : MonoBehaviour
             player2Character.transform.localScale = new Vector3(-1, 1, 1); // Flip the character
         }
         player2Character.tag = "P2"; // Assign tag to player2
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

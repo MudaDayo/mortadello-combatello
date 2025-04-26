@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public Slider player1HealthBar;
     public Slider player2HealthBar;
 
+    public GameObject replayPanel;
+
     public TextMeshProUGUI player1WinsText;
     public TextMeshProUGUI player2WinsText;
 
@@ -58,7 +60,14 @@ public class UIManager : MonoBehaviour
         if (playerManager != null)
         {
             player1HealthBar.value = playerManager.player1Health / 100f;
-            player2HealthBar.value = playerManager.player2Health /100f;
+            player2HealthBar.value = playerManager.player2Health / 100f;
+
+            // Ensure round win arrays are properly initialized
+            if (player1RoundWins.Length != playerManager.maxRounds || player2RoundWins.Length != playerManager.maxRounds)
+            {
+                Debug.LogError("Round win arrays do not match the maximum number of rounds in PlayerManager!");
+                return;
+            }
 
             // Update round win images for Player 1
             for (int i = 0; i < player1RoundWins.Length; i++)

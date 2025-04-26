@@ -59,6 +59,9 @@ public class PlayerControls : MonoBehaviour
                 : attackPrefabP2; // Set the attack prefab based on the player's tag
 
         playerManager = FindFirstObjectByType<PlayerManager>();
+
+        playerManager.player1 = gameObject.CompareTag("P1") ? gameObject : playerManager.player1;
+        playerManager.player2 = gameObject.CompareTag("P2") ? gameObject : playerManager.player2;
     }
 
     // Update is called once per frame
@@ -232,7 +235,7 @@ public class PlayerControls : MonoBehaviour
             
             if (playerManager.player2Health <= 0)
             {
-                playerManager.OnPlayerDeath("P1");
+                playerManager.OnPlayerDeath("P2");
                 
                 // Play death VFX
                 Instantiate(deathVFXPrefab_Skull, transform.position + new Vector3(0, 1.5f, -2), Quaternion.identity);
