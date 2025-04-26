@@ -265,6 +265,7 @@ MonoBehaviour:
   isGrounded: 0
   emoteInput: 0
   attackInput: 0
+  attacking: 0
   attackPrefab: {fileID: 5624283710442476390, guid: 961b8b2fa35fa484aa568bc65753eeae, type: 3}
   attackSpawnPoint: {fileID: 228360771792950057}
 --- !u!54 &6240373572187000337

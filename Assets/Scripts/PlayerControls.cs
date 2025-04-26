@@ -19,8 +19,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float groundCheckDistance = 0.1f;
     public bool isGrounded = true;
 
+    private Vector3 attackDirection;
     private Vector2 moveInput;
-    [SerializeField]private bool emoteInput, attackInput = false;
+    [SerializeField]private bool emoteInput, attackInput, attacking = false;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -58,21 +59,27 @@ public class PlayerControls : MonoBehaviour
     {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
+            attackDirection = new Vector3(transform.localScale.x, 0f, 0f); // Get the attack direction based on movement input
+
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
 
+            attacking = true;
             animator.SetBool("attacking", true);
         }
         else if (attackHitboxCooldown > 0f)
         {
-            rb.AddForce(transform.forward * attackForce, ForceMode.Impulse); // Add forward force to the rigidbody
-
             attackHitboxCooldown -= Time.deltaTime; // Decrease cooldown over time
-            Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
         }
         else
         {
+            attacking = false;
             animator.SetBool("attacking", false);
+        }
+
+        if (attacking){
+            Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
+            transform.Translate(new Vector3(transform.localScale.x * attackForce * Time.deltaTime, 0f, 0f), Space.World); // Move the player in the attack direction
         }
     }
 
