@@ -106,11 +106,11 @@ public class PlayerControls : MonoBehaviour
 
             if(move.x > 0)
             {
-                body.localScale = new Vector3(1, 1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
             }
             else if(move.x < 0)
             {
-                body.localScale = new Vector3(-1, 1, 1);
+                transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
