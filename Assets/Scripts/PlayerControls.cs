@@ -147,6 +147,9 @@ public class PlayerControls : MonoBehaviour
         if (IsGrounded() && moveInput.y > 0.3f)
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            
+            // jump vfx
+            Instantiate(jumpVFXPrefab, transform.position, Quaternion.identity);
         }
 
         transform.Translate(move, Space.World);
