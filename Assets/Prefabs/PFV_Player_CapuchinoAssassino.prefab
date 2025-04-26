@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: landVFXPrefab
+      value: 
+      objectReference: {fileID: 3432958286849152088, guid: 87ee7299dd44ed747af24dbb91bcd33b, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: emoteVFXPrefab
+      value: 
+      objectReference: {fileID: 1978689737715041617, guid: afa54037ffe627545886e2741abb365d, type: 3}
     - target: {fileID: 7717729279541006051, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7996865906082240189, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PFV_Player_CapuchinoAssassino
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
