@@ -16,10 +16,21 @@ public class PlayerControls : MonoBehaviour
     public bool isGrounded = false;
 
     private Vector2 moveInput;
+    [SerializeField]private bool emoteInput, attackInput = false;
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+    
+    public void OnEmote(InputAction.CallbackContext context)
+    {
+        emoteInput = context.performed;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        attackInput = context.performed;
     }
 
 
