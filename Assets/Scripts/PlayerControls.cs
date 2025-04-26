@@ -32,6 +32,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private GameObject hitVFXPrefab;
     [SerializeField] private GameObject jumpVFXPrefab;
     [SerializeField] private GameObject landVFXPrefab;
+    [SerializeField] private GameObject deathVFXPrefab_Skull;
+    [SerializeField] private GameObject deathVFXPrefab_Explosion;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -204,6 +206,16 @@ public class PlayerControls : MonoBehaviour
             // offset location, a bit above the player and in front of the player
             Vector3 offset = new Vector3(0, 2, -1);
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
+            
+            // i know this is not the best way to do this, but i am lazy
+            if (playerManager.player1Health <= 0)
+            {
+                playerManager.OnPlayerDeath("P1");
+                
+                // Play death VFX
+                Instantiate(deathVFXPrefab_Skull, transform.position + new Vector3(0, 1.5f, -2), Quaternion.identity);
+                Instantiate(deathVFXPrefab_Explosion, transform.position, Quaternion.identity);
+            }
         }
         else if (gameObject.CompareTag("P2") && other.CompareTag("Attack Hitbox P1"))
         {
@@ -217,6 +229,15 @@ public class PlayerControls : MonoBehaviour
             // offset location, a bit above the player and in front of the player
             Vector3 offset = new Vector3(0, 2, -1);
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
+            
+            if (playerManager.player2Health <= 0)
+            {
+                playerManager.OnPlayerDeath("P1");
+                
+                // Play death VFX
+                Instantiate(deathVFXPrefab_Skull, transform.position + new Vector3(0, 1.5f, -2), Quaternion.identity);
+                Instantiate(deathVFXPrefab_Explosion, transform.position, Quaternion.identity);
+            }
         }
     }
 }
