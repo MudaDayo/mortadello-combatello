@@ -54,6 +54,7 @@ public class SelectControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log($"Player {PlayerNumber} is using controller ID: {Gamepad.current?.deviceId ?? -1}");
         Movement();
         //Attack();
         Emote();
@@ -102,6 +103,8 @@ public class SelectControls : MonoBehaviour
             }
         }
     }
+
+    
 
     // [SerializeField] private GameObject attackPrefabP1;
     // [SerializeField] private GameObject attackPrefabP2;
