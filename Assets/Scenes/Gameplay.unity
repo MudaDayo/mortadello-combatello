@@ -4150,6 +4150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042791256451385222, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
+      propertyPath: emoteVFXPrefab
+      value: 
+      objectReference: {fileID: 1978689737715041617, guid: afa54037ffe627545886e2741abb365d, type: 3}
     - target: {fileID: 4867235787598365685, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
       propertyPath: m_Name
       value: PFV_Player_LaVacaSaturnoSaturnita
@@ -4992,6 +4996,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 666723437}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: emoteVFXPrefab
+      value: 
+      objectReference: {fileID: 1978689737715041617, guid: afa54037ffe627545886e2741abb365d, type: 3}
     - target: {fileID: 3667606889553132800, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_Avatar
       value: 

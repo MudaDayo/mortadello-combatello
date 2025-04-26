@@ -18,11 +18,20 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float attackHitboxCooldown = 1f;
 
     [SerializeField] private float groundCheckDistance = 0.1f;
+    
     public bool isGrounded = true;
+    private bool wasGrounded = true;
 
     private Vector3 attackDirection;
     private Vector2 moveInput;
     [SerializeField] private bool emoteInput, attackInput, attacking = false;
+    
+    // VFX 
+    [SerializeField] private GameObject attackVFXPrefab;
+    [SerializeField] private GameObject emoteVFXPrefab;
+    [SerializeField] private GameObject hitVFXPrefab;
+    [SerializeField] private GameObject jumpVFXPrefab;
+    [SerializeField] private GameObject landVFXPrefab;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -77,6 +86,9 @@ public class PlayerControls : MonoBehaviour
 
             attacking = true;
             animator.SetBool("attacking", true);
+            
+            // attack vfx
+            Instantiate(attackVFXPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
         }
         else if (attackHitboxCooldown > 0f)
         {
@@ -106,6 +118,9 @@ public class PlayerControls : MonoBehaviour
         if (emoteInput)
         {
             animator.SetBool("emoting", true);
+            
+            // emote vfx
+           Instantiate(emoteVFXPrefab, transform.position, Quaternion.identity);
         }
         else
         {
@@ -157,19 +172,18 @@ public class PlayerControls : MonoBehaviour
 
     private bool IsGrounded()
     {
-        if (body.position.y <= groundCheckDistance)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        bool currentlyGrounded = body.position.y <= groundCheckDistance;
 
-        animator.SetBool("isInAir", !isGrounded);
-        return isGrounded;
+        if (!wasGrounded && currentlyGrounded)
+        {
+            // Play landing VFX
+            Instantiate(landVFXPrefab, transform.position, Quaternion.identity);
+        }
+        wasGrounded = currentlyGrounded;
+
+        animator.SetBool("isInAir", !currentlyGrounded);
+        return currentlyGrounded;
     }
-
 
     void OnTriggerEnter(Collider other)
     {
