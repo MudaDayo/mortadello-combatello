@@ -6,6 +6,7 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float attackForce = 5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private Rigidbody rb;
 
@@ -53,6 +54,8 @@ public class PlayerControls : MonoBehaviour
     {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
+            rb.AddForce(transform.forward * attackForce, ForceMode.Impulse); // Add forward force to the rigidbody
+
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
 
@@ -126,11 +129,5 @@ public class PlayerControls : MonoBehaviour
             }
             animator.SetBool("isInAir", !isGrounded);
             return isGrounded;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
         }
 }
