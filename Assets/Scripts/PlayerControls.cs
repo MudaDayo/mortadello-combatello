@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
-
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float attackForce = 5f;
@@ -23,13 +22,13 @@ public class PlayerControls : MonoBehaviour
 
     private Vector3 attackDirection;
     private Vector2 moveInput;
-    [SerializeField]private bool emoteInput, attackInput, attacking = false;
+    [SerializeField] private bool emoteInput, attackInput, attacking = false;
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
-    
+
     public void OnEmote(InputAction.CallbackContext context)
     {
         emoteInput = context.performed;
@@ -43,7 +42,10 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         attackHitboxCooldown = 0f;
-        attackPrefab = gameObject.CompareTag("P1") ? attackPrefabP1 : attackPrefabP2; // Set the attack prefab based on the player's tag
+        attackPrefab =
+            gameObject.CompareTag("P1")
+                ? attackPrefabP1
+                : attackPrefabP2; // Set the attack prefab based on the player's tag
 
         playerManager = FindFirstObjectByType<PlayerManager>();
     }
@@ -66,7 +68,9 @@ public class PlayerControls : MonoBehaviour
     {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
-            attackDirection = new Vector3(transform.localScale.x / (moveInput.y + 0.01f), moveInput.y, 0f); // Get the attack direction based on movement input
+            attackDirection =
+                new Vector3(transform.localScale.x / (moveInput.y + 0.01f), moveInput.y,
+                    0f); // Get the attack direction based on movement input
 
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
@@ -84,73 +88,87 @@ public class PlayerControls : MonoBehaviour
             animator.SetBool("attacking", false);
         }
 
-        if (attacking){
+        if (attacking)
+        {
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
-            transform.Translate(new Vector3(transform.localScale.x * attackForce * Time.deltaTime, 0f, 0f), Space.World); // Move the player in the attack direction
+            transform.Translate(new Vector3(transform.localScale.x * attackForce * Time.deltaTime, 0f, 0f),
+                Space.World); // Move the player in the attack direction
         }
     }
 
-    private void Emote(){
-        if(attacking){return;}
+    private void Emote()
+    {
+        if (attacking)
+        {
+            return;
+        }
+
         if (emoteInput)
         {
             animator.SetBool("emoting", true);
-        }else
+        }
+        else
         {
             animator.SetBool("emoting", false);
-        }}
+        }
+    }
 
-        private void Movement(){
-            if (attacking){return;}
+    private void Movement()
+    {
+        if (attacking)
+        {
+            return;
+        }
 
-            // Apply gravity
-            if(!IsGrounded())
-            {
-                rb.AddForce(new Vector3(0, -gravity, 0), ForceMode.Acceleration);
-            }
+        // Apply gravity
+        if (!IsGrounded())
+        {
+            rb.AddForce(new Vector3(0, -gravity, 0), ForceMode.Acceleration);
+        }
 
-            Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
+        Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
 
-            //jump
-            if (IsGrounded() && moveInput.y > 0.3f)
-            {
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-            }
+        //jump
+        if (IsGrounded() && moveInput.y > 0.3f)
+        {
+            rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        }
 
         transform.Translate(move, Space.World);
         //Debug.Log(move);
-        if(move.x > 0 || move.x < 0)
-            {
-                animator.SetBool("moving", true);
-            }
-            else
-            {
-                animator.SetBool("moving", false);
-            }
-
-            if(move.x > 0)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if(move.x < 0)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-        }
-
-        private bool IsGrounded()
+        if (move.x > 0 || move.x < 0)
         {
-            if (body.position.y <= groundCheckDistance)
-            {
-                isGrounded = true;
-            }
-            else
-            {
-                isGrounded = false;
-            }
-            animator.SetBool("isInAir", !isGrounded);
-            return isGrounded;
+            animator.SetBool("moving", true);
         }
+        else
+        {
+            animator.SetBool("moving", false);
+        }
+
+        if (move.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (move.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        if (body.position.y <= groundCheckDistance)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        animator.SetBool("isInAir", !isGrounded);
+        return isGrounded;
+    }
 
 
     void OnTriggerEnter(Collider other)
