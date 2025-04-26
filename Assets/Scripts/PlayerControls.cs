@@ -37,6 +37,10 @@ public class PlayerControls : MonoBehaviour
         attackInput = context.performed;
     }
 
+    void Start()
+    {
+        attackHitboxCooldown = 0f;
+    }
 
     // Update is called once per frame
     void Update()
@@ -54,8 +58,6 @@ public class PlayerControls : MonoBehaviour
     {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
-            rb.AddForce(transform.forward * attackForce, ForceMode.Impulse); // Add forward force to the rigidbody
-
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
 
@@ -63,6 +65,8 @@ public class PlayerControls : MonoBehaviour
         }
         else if (attackHitboxCooldown > 0f)
         {
+            rb.AddForce(transform.forward * attackForce, ForceMode.Impulse); // Add forward force to the rigidbody
+
             attackHitboxCooldown -= Time.deltaTime; // Decrease cooldown over time
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
         }

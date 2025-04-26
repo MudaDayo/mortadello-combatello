@@ -254,10 +254,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 2.5
+  jumpForce: 10
   attackForce: 5
   gravity: 0
-  rb: {fileID: 0}
+  rb: {fileID: 6240373572187000337}
   body: {fileID: 2789454290094883551}
   animator: {fileID: 5562008572796794943}
   attackHitboxCooldown: 1
