@@ -47,10 +47,12 @@ public class PlayerControls : MonoBehaviour
     private void Attack(){
         if (attackInput)
         {
-            animator.SetTrigger("attack");
-            attackInput = false;
+            animator.SetBool("attacking", true);
         }
-    }
+        else
+        {
+            animator.SetBool("attacking", false);
+    }}
     private void Emote(){
         if (emoteInput)
         {
