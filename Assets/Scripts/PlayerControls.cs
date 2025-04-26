@@ -11,8 +11,10 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] private Transform body;
 
+    [SerializeField] private Animator animator;
 
-    [SerializeField] private float GroundCheckDistance = 0.1f;
+
+    [SerializeField] private float groundCheckDistance = 0.1f;
     public bool isGrounded = false;
 
     private Vector2 moveInput;
@@ -38,9 +40,36 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
         Movement();
+        Attack();
+        Emote();
+    }
+
+    private void Attack(){
+        if (attackInput)
+        {
+            animator.SetTrigger("attack");
+            attackInput = false;
         }
+    }
+    private void Emote(){
+        if (emoteInput)
+        {
+            animator.SetBool("emoting", true);
+        }else
+        {
+            animator.SetBool("emoting", false);
+        }}
 
         private void Movement(){
+            if(moveInput.x != 0)
+            {
+                animator.SetBool("moving", true);
+            }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
+
             // Apply gravity
             if(!IsGrounded())
             {
@@ -49,6 +78,7 @@ public class PlayerControls : MonoBehaviour
 
             Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
 
+            //jump
             if (IsGrounded() && moveInput.y > 0)
             {
                 rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
@@ -59,7 +89,7 @@ public class PlayerControls : MonoBehaviour
 
         private bool IsGrounded()
         {
-            if (body.position.y <= GroundCheckDistance)
+            if (body.position.y <= groundCheckDistance)
             {
                 isGrounded = true;
             }
@@ -67,12 +97,13 @@ public class PlayerControls : MonoBehaviour
             {
                 isGrounded = false;
             }
+            animator.SetBool("grounded", isGrounded);
             return isGrounded;
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.down * GroundCheckDistance);
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
         }
 }
