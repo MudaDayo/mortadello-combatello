@@ -9,15 +9,15 @@ public class PlayerManager : MonoBehaviour
     public float player1Health = 100f;
     public float player2Health = 100f;
 
-    public float player1Rounds = 0f;
-    public float player2Rounds = 0f;
+    public int player1Rounds = 0;
+    public int player2Rounds = 0;
 
-    public float player1Wins = 0f;
-    public float player2Wins = 0f;
+    public int player1Wins = 0;
+    public int player2Wins = 0;
 
     //player 1 is assassino and player 2 is la vaca
-    public float player1Character = 0f;
-    public float player2Character = 0f;
+    public int player1Character = 0;
+    public int player2Character = 0;
 
     private void Awake()
     {
