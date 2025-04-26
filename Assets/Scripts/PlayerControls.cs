@@ -13,9 +13,12 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private GameObject attackHitbox;
+    [SerializeField] private float attackHitboxDuration = 0.5f;
+    [SerializeField] private float attackHitboxCooldown = 1f;
 
     [SerializeField] private float groundCheckDistance = 0.1f;
-    public bool isGrounded = false;
+    public bool isGrounded = true;
 
     private Vector2 moveInput;
     [SerializeField]private bool emoteInput, attackInput = false;
@@ -42,17 +45,31 @@ public class PlayerControls : MonoBehaviour
         Movement();
         Attack();
         Emote();
+        isGrounded = IsGrounded();
     }
 
     private void Attack(){
-        if (attackInput)
+        if (attackInput && attackHitboxCooldown <= 0f)
         {
+            attackHitbox.SetActive(true);
+            Invoke("DisableAttackHitbox", attackHitboxDuration); // Disable hitbox after 0.5 seconds
+            attackHitboxCooldown = 1f; // Reset cooldown
+
             animator.SetBool("attacking", true);
         }
-        else
+        else if (attackHitboxCooldown > 0f)
+        {
+            attackHitboxCooldown -= Time.deltaTime; // Decrease cooldown over time
+        }else
         {
             animator.SetBool("attacking", false);
-    }}
+        }
+}
+
+    void DisableAttackHitbox()
+    {
+        attackHitbox.SetActive(false);
+    }
     private void Emote(){
         if (emoteInput)
         {
@@ -99,7 +116,7 @@ public class PlayerControls : MonoBehaviour
             {
                 isGrounded = false;
             }
-            animator.SetBool("grounded", isGrounded);
+            animator.SetBool("isInAir", !isGrounded);
             return isGrounded;
         }
 
