@@ -1113,6 +1113,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 0.5, z: 10.000005}
   m_Center: {x: 0.00000003401601, y: 0, z: 0.000000059604645}
+--- !u!1 &494984038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 494984040}
+  - component: {fileID: 494984039}
+  m_Layer: 0
+  m_Name: Player Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &494984039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494984038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04da73769a3af4b4fa12f482ce9e7583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefab1: {fileID: 4867235787598365685, guid: c79494f9cd771054b8fec962f4876f1c, type: 3}
+  characterPrefab2: {fileID: 4867235787598365685, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
+  player1Character: {fileID: 0}
+  player2Character: {fileID: 0}
+--- !u!4 &494984040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494984038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508828152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,8 +2293,8 @@ MonoBehaviour:
   player2Rounds: 0
   player1Wins: 0
   player2Wins: 0
-  player1Character: 1
-  player2Character: 0
+  player1Character: 0
+  player2Character: 1
 --- !u!4 &825821820
 Transform:
   m_ObjectHideFlags: 0
@@ -4106,6 +4154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFV_Player_LaVacaSaturnoSaturnita
       objectReference: {fileID: 0}
+    - target: {fileID: 4867235787598365685, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5074316422180772779, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -4116,7 +4168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5074316422180772779, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5074316422180772779, guid: 718d3456109aac44fa2734a1426ff7a6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4958,7 +5010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7717729279541006051, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.14
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7717729279541006051, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4992,6 +5044,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7996865906082240189, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5014,3 +5070,4 @@ SceneRoots:
   - {fileID: 954106232}
   - {fileID: 825821820}
   - {fileID: 1027540787}
+  - {fileID: 494984040}
