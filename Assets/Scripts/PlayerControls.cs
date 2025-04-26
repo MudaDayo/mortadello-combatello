@@ -59,7 +59,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
-            attackDirection = new Vector3(transform.localScale.x, 0f, 0f); // Get the attack direction based on movement input
+            attackDirection = new Vector3(transform.localScale.x / (moveInput.y + 0.01f), moveInput.y, 0f); // Get the attack direction based on movement input
 
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
@@ -84,6 +84,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     private void Emote(){
+        if(attacking){return;}
         if (emoteInput)
         {
             animator.SetBool("emoting", true);
@@ -93,6 +94,8 @@ public class PlayerControls : MonoBehaviour
         }}
 
         private void Movement(){
+            if (attacking){return;}
+
             // Apply gravity
             if(!IsGrounded())
             {
