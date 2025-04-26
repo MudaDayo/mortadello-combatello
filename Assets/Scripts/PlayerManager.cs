@@ -5,7 +5,6 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get; private set; }
     [SerializeField] private GameObject playerPrefab1;
     [SerializeField] private GameObject playerPrefab2;
-
     public float player1Health = 100f;
     public float player2Health = 100f;
 

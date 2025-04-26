@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Attack Hitbox P1
   - Attack Hitbox P2
+  - P1
+  - P2
   layers:
   - Default
   - TransparentFX

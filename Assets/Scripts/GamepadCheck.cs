@@ -16,7 +16,13 @@ public class ControllerValidator : MonoBehaviour
     {
         controllers = "";
         int count = 0;
-        
+        Keyboard k = Keyboard.current;
+        if (k != null) 
+        { 
+            controllers += "Keyboard\n"; 
+            count++;
+        }
+
         ReadOnlyArray<Gamepad> gamepads = Gamepad.all;
         for(int i = 0; i < gamepads.Count; i++)
         {

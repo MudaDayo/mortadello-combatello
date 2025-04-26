@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4880125020688396622}
   - component: {fileID: 8108226700009783092}
   m_Layer: 0
-  m_Name: Attack Hitbox
-  m_TagString: Attack Hitbox P1
+  m_Name: P2 Attack
+  m_TagString: Attack Hitbox P2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

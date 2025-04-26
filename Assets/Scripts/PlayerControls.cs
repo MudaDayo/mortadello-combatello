@@ -10,6 +10,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private Rigidbody rb;
 
+    private PlayerManager playerManager;
+
     [SerializeField] private Transform body;
 
     [SerializeField] private Animator animator;
@@ -41,6 +43,9 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         attackHitboxCooldown = 0f;
+        attackPrefab = gameObject.CompareTag("P1") ? attackPrefabP1 : attackPrefabP2; // Set the attack prefab based on the player's tag
+
+        playerManager = FindFirstObjectByType<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -52,7 +57,9 @@ public class PlayerControls : MonoBehaviour
         isGrounded = IsGrounded();
     }
 
-    [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private GameObject attackPrefabP1;
+    [SerializeField] private GameObject attackPrefabP2;
+    private GameObject attackPrefab;
     [SerializeField] private Transform attackSpawnPoint;
 
     private void Attack()
@@ -111,7 +118,7 @@ public class PlayerControls : MonoBehaviour
             }
 
         transform.Translate(move, Space.World);
-        Debug.Log(move);
+        //Debug.Log(move);
         if(move.x > 0 || move.x < 0)
             {
                 animator.SetBool("moving", true);
@@ -144,4 +151,27 @@ public class PlayerControls : MonoBehaviour
             animator.SetBool("isInAir", !isGrounded);
             return isGrounded;
         }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger entered with: " + other.gameObject.name);
+
+        if (gameObject.CompareTag("P1") && other.CompareTag("Attack Hitbox P2"))
+        {
+            playerManager.player1Health -= 1f; // Decrease player 1's health by 10
+
+            // Apply explosion force
+            Vector3 forceDirection = (transform.position - other.transform.position).normalized;
+            rb.AddForce(forceDirection * attackForce, ForceMode.Impulse);
+        }
+        else if (gameObject.CompareTag("P2") && other.CompareTag("Attack Hitbox P1"))
+        {
+            playerManager.player2Health -= 1f; // Decrease player 2's health by 10
+
+            // Apply explosion force
+            Vector3 forceDirection = (transform.position - other.transform.position).normalized;
+            rb.AddForce(forceDirection * attackForce, ForceMode.Impulse);
+        }
+    }
 }
