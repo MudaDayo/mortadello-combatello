@@ -86,9 +86,6 @@ public class PlayerControls : MonoBehaviour
 
             attacking = true;
             animator.SetBool("attacking", true);
-            
-            // attack vfx
-            Instantiate(attackVFXPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
         }
         else if (attackHitboxCooldown > 0f)
         {
@@ -105,6 +102,9 @@ public class PlayerControls : MonoBehaviour
             Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             transform.Translate(new Vector3(transform.localScale.x * attackForce * Time.deltaTime, 0f, 0f),
                 Space.World); // Move the player in the attack direction
+            
+            // attack vfx
+            Instantiate(attackVFXPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
         }
     }
 

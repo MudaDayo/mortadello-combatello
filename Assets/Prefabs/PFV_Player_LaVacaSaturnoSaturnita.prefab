@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: emoteVFXPrefab
       value: 
       objectReference: {fileID: 1978689737715041617, guid: afa54037ffe627545886e2741abb365d, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: attackVFXPrefab
+      value: 
+      objectReference: {fileID: 2360655870356088562, guid: 57a776ff377f3c44e8403e2067a4d41f, type: 3}
     - target: {fileID: 3044955071088074416, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_Mesh
       value: 
