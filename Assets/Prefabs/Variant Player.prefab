@@ -29,41 +29,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2029697651786962449}
   - {fileID: 7607305152873576945}
   m_Father: {fileID: 7011174841009340977}
   m_LocalEulerAnglesHint: {x: 0.146, y: 132.035, z: -0.011}
---- !u!1 &2707786133175547878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2029697651786962449}
-  m_Layer: 0
-  m_Name: Attack Spawn Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2029697651786962449
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707786133175547878}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 0.5, z: 0.67}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4662331569203083358}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &744874858301148370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76,9 +44,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: attackSpawnPoint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6166390268746162821, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_Name
       value: Body 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166390268746162821, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7717729279541006051, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -125,7 +101,8 @@ PrefabInstance:
       value: Variant Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4248454663773462112, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7717729279541006051, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       insertIndex: 0
@@ -135,9 +112,24 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6658276035275726131}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+--- !u!4 &3233710261133331981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2789454290094883551, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+  m_PrefabInstance: {fileID: 744874858301148370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5144917171936310509 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5562008572796794943, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+  m_PrefabInstance: {fileID: 744874858301148370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!54 &6686738306096022211 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6240373572187000337, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+  m_PrefabInstance: {fileID: 744874858301148370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6900984658866122327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6166390268746162821, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
   m_PrefabInstance: {fileID: 744874858301148370}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7011174841009340977 stripped
@@ -163,14 +155,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 1
-  body1: {fileID: 0}
-  body2: {fileID: 0}
+  body1: {fileID: 6900984658866122327}
+  body2: {fileID: 1901083632609958771}
   moveSpeed: 5
   jumpForce: 5
   gravity: -9.81
   rb: {fileID: 6686738306096022211}
-  body: {fileID: 0}
-  animator: {fileID: 0}
+  body: {fileID: 3233710261133331981}
+  animator: {fileID: 5144917171936310509}
   groundCheckDistance: 0.1
   isGrounded: 1
   emoteInput: 0

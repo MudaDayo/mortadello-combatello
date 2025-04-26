@@ -54,6 +54,11 @@ public class SelectControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Movement();
+        //Attack();
+        Emote();
+        isGrounded = IsGrounded();
+
         if (PlayerNumber == 1)
         {
             if (transform.position.x > 0f)
@@ -71,6 +76,7 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(true);
                 body2.SetActive(false);
+                body = body1.transform; // Set the body to the first character's transform
             }
         }
         else if (PlayerNumber == 2)
@@ -81,6 +87,7 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(false);
                 body2.SetActive(true);
+                body = body2.transform;
             }
             else if (transform.position.x <= 0f)
             {
@@ -88,13 +95,9 @@ public class SelectControls : MonoBehaviour
 
                 body1.SetActive(true);
                 body2.SetActive(false);
+                body = body1.transform;
             }
         }
-
-        Movement();
-        //Attack();
-        Emote();
-        isGrounded = IsGrounded();
     }
 
     // [SerializeField] private GameObject attackPrefabP1;
@@ -141,40 +144,32 @@ public class SelectControls : MonoBehaviour
         }}
 
         private void Movement(){
-            //if (attacking){return;}
-
             // Apply gravity
-            if(!IsGrounded())
+            if (!IsGrounded())
             {
-                rb.AddForce(new Vector3(0, -gravity, 0), ForceMode.Acceleration);
+            rb.AddForce(new Vector3(0, -gravity, 0), ForceMode.Acceleration);
             }
 
-            Vector3 move = new Vector3(moveInput.x, 0, 0) * moveSpeed * Time.deltaTime;
+            Vector3 move = new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed * Time.deltaTime;
 
-            //jump
-            if (IsGrounded() && moveInput.y > 0.3f)
-            {
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-            }
+            transform.Translate(move, Space.World);
 
-        transform.Translate(move, Space.World);
-        //Debug.Log(move);
-        if(move.x > 0 || move.x < 0)
+            if (move.x != 0 || move.z != 0)
             {
-                animator.SetBool("moving", true);
+            animator.SetBool("moving", true);
             }
             else
             {
-                animator.SetBool("moving", false);
+            animator.SetBool("moving", false);
             }
 
-            if(move.x > 0)
+            if (move.x > 0)
             {
-                transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
             }
-            else if(move.x < 0)
+            else if (move.x < 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
