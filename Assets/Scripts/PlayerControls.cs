@@ -13,8 +13,6 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    [SerializeField] private GameObject attackHitbox;
-    [SerializeField] private float attackHitboxDuration = 0.5f;
     [SerializeField] private float attackHitboxCooldown = 1f;
 
     [SerializeField] private float groundCheckDistance = 0.1f;
@@ -48,11 +46,14 @@ public class PlayerControls : MonoBehaviour
         isGrounded = IsGrounded();
     }
 
-    private void Attack(){
+    [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private Transform attackSpawnPoint;
+
+    private void Attack()
+    {
         if (attackInput && attackHitboxCooldown <= 0f)
         {
-            attackHitbox.SetActive(true);
-            Invoke("DisableAttackHitbox", attackHitboxDuration); // Disable hitbox after 0.5 seconds
+            Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
             attackHitboxCooldown = 1f; // Reset cooldown
 
             animator.SetBool("attacking", true);
@@ -60,16 +61,14 @@ public class PlayerControls : MonoBehaviour
         else if (attackHitboxCooldown > 0f)
         {
             attackHitboxCooldown -= Time.deltaTime; // Decrease cooldown over time
-        }else
+            Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation); // Instantiate the prefab
+        }
+        else
         {
             animator.SetBool("attacking", false);
         }
-}
-
-    void DisableAttackHitbox()
-    {
-        attackHitbox.SetActive(false);
     }
+
     private void Emote(){
         if (emoteInput)
         {
@@ -103,6 +102,15 @@ public class PlayerControls : MonoBehaviour
             else
             {
                 animator.SetBool("moving", false);
+            }
+
+            if(move.x > 0)
+            {
+                body.localScale = new Vector3(1, 1, 1);
+            }
+            else if(move.x < 0)
+            {
+                body.localScale = new Vector3(-1, 1, 1);
             }
         }
 
