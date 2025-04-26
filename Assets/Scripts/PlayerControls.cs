@@ -84,6 +84,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     private void Emote(){
+        if(attacking){return;}
         if (emoteInput)
         {
             animator.SetBool("emoting", true);
@@ -93,6 +94,8 @@ public class PlayerControls : MonoBehaviour
         }}
 
         private void Movement(){
+            if (attacking){return;}
+
             // Apply gravity
             if(!IsGrounded())
             {
