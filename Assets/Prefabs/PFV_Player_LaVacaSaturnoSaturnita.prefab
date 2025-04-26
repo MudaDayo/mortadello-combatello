@@ -92,6 +92,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6495414362072809638}
     - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: hitVFXPrefab
+      value: 
+      objectReference: {fileID: 119183615461286708, guid: 382c8e53ce2ddef43b49056ac266ab3a, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: jumpVFXPrefab
+      value: 
+      objectReference: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: landVFXPrefab
       value: 
       objectReference: {fileID: 3432958286849152088, guid: 87ee7299dd44ed747af24dbb91bcd33b, type: 3}

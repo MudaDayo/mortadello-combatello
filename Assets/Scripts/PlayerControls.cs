@@ -199,6 +199,11 @@ public class PlayerControls : MonoBehaviour
             // Apply explosion force
             Vector3 forceDirection = (transform.position - other.transform.position).normalized;
             rb.AddForce(forceDirection * attackForce, ForceMode.Impulse);
+            
+            // hit vfx
+            // offset location, a bit above the player and in front of the player
+            Vector3 offset = new Vector3(0, 2, -1);
+            Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
         }
         else if (gameObject.CompareTag("P2") && other.CompareTag("Attack Hitbox P1"))
         {
@@ -207,6 +212,11 @@ public class PlayerControls : MonoBehaviour
             // Apply explosion force
             Vector3 forceDirection = (transform.position - other.transform.position).normalized;
             rb.AddForce(forceDirection * attackForce, ForceMode.Impulse);
+            
+            // hit vfx
+            // offset location, a bit above the player and in front of the player
+            Vector3 offset = new Vector3(0, 2, -1);
+            Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
         }
     }
 }
