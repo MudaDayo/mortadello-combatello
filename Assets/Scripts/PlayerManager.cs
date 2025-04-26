@@ -30,6 +30,20 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    public void OnPlayerDeath(string playerTag)
+    {
+        if (playerTag == "P1")
+        {
+            player1Health = 0;
+            player2Wins++;
+        }
+        else if (playerTag == "P2")
+        {
+            player2Health = 0;
+            player1Wins++;
+        }
+    }
 
     // Add any player-related properties or methods here
 }   
