@@ -283,7 +283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 5
-  gravity: -9.81
-  GroundCheckDistance: 0.5
+  jumpForce: 2.5
+  gravity: 0
+  rb: {fileID: 497979134701522127}
+  body: {fileID: 2789454290094883551}
+  GroundCheckDistance: 0.1
   isGrounded: 0
