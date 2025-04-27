@@ -282,7 +282,7 @@ public class PlayerControls : MonoBehaviour
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
             
             // Play hit audio
-            if (hitAudio != null && !audioSource.isPlaying)
+            if (hitAudio != null) 
             {
                 audioSource.PlayOneShot(hitAudio);
             }

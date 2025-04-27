@@ -13,6 +13,17 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI player1WinsText;
     public TextMeshProUGUI player2WinsText;
+    
+    // audio
+    [SerializeField] private AudioClip player1WinsSound;
+    [SerializeField] private AudioClip player2WinsSound;
+    
+    private AudioSource audioSource;
+    
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void UpdateWinsText()
     {
@@ -90,11 +101,23 @@ public class UIManager : MonoBehaviour
     {
         replayPanelCappucino.SetActive(true);
         Time.timeScale = 0.1f; // Pause the game
+        
+        // play audio
+        if (player1WinsSound != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(player1WinsSound);
+        }
     }
 
     public void VacaSaturnoWins()
     {
         replayPanelVacaSaturno.SetActive(true);
         Time.timeScale = 0f; // Pause the game
+        
+        // play audio
+        if (player2WinsSound != null && !audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(player2WinsSound);
+        }
     }
 }
