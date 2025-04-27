@@ -108,7 +108,7 @@ public class PlayerControls : MonoBehaviour
             animator.SetBool("attacking", true);
             
             // Play attack audio
-            if (attackAudio != null)
+            if (attackAudio != null && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(attackAudio);
             }
@@ -149,7 +149,7 @@ public class PlayerControls : MonoBehaviour
            Instantiate(emoteVFXPrefab, transform.position, Quaternion.identity);
            
             // Play emote audio
-            if (emoteAudio != null)
+            if (emoteAudio != null && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(emoteAudio);
             }
@@ -184,7 +184,7 @@ public class PlayerControls : MonoBehaviour
             Instantiate(jumpVFXPrefab, transform.position, Quaternion.identity);
             
             // Play jump audio
-            if (jumpAudio != null)
+            if (jumpAudio != null && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(jumpAudio);
             }
@@ -262,7 +262,7 @@ public class PlayerControls : MonoBehaviour
                 Instantiate(deathVFXPrefab_Explosion, transform.position, Quaternion.identity);
                 
                 // Play death audio
-                if (deathAudio != null)
+                if (deathAudio != null && !audioSource.isPlaying)
                 {
                     audioSource.PlayOneShot(deathAudio);
                 }
@@ -282,7 +282,7 @@ public class PlayerControls : MonoBehaviour
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
             
             // Play hit audio
-            if (hitAudio != null)
+            if (hitAudio != null && !audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(hitAudio);
             }
