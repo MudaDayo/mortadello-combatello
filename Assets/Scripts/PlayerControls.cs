@@ -34,6 +34,21 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private GameObject landVFXPrefab;
     [SerializeField] private GameObject deathVFXPrefab_Skull;
     [SerializeField] private GameObject deathVFXPrefab_Explosion;
+    
+    // audio
+    [SerializeField] private AudioClip jumpAudio;
+    [SerializeField] private AudioClip attackAudio;
+    [SerializeField] private AudioClip emoteAudio;
+    [SerializeField] private AudioClip hitAudio;
+    [SerializeField] private AudioClip landAudio;
+    [SerializeField] private AudioClip deathAudio;
+    
+    private AudioSource audioSource;
+    
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -91,6 +106,12 @@ public class PlayerControls : MonoBehaviour
 
             attacking = true;
             animator.SetBool("attacking", true);
+            
+            // Play attack audio
+            if (attackAudio != null)
+            {
+                audioSource.PlayOneShot(attackAudio);
+            }
         }
         else if (attackHitboxCooldown > 0f)
         {
@@ -126,6 +147,12 @@ public class PlayerControls : MonoBehaviour
             
             // emote vfx
            Instantiate(emoteVFXPrefab, transform.position, Quaternion.identity);
+           
+            // Play emote audio
+            if (emoteAudio != null)
+            {
+                audioSource.PlayOneShot(emoteAudio);
+            }
         }
         else
         {
@@ -155,6 +182,12 @@ public class PlayerControls : MonoBehaviour
             
             // jump vfx
             Instantiate(jumpVFXPrefab, transform.position, Quaternion.identity);
+            
+            // Play jump audio
+            if (jumpAudio != null)
+            {
+                audioSource.PlayOneShot(jumpAudio);
+            }
         }
 
         transform.Translate(move, Space.World);
@@ -186,6 +219,9 @@ public class PlayerControls : MonoBehaviour
         {
             // Play landing VFX
             Instantiate(landVFXPrefab, transform.position, Quaternion.identity);
+            
+            // Play landing audio
+            // landAudio.Play();
         }
         wasGrounded = currentlyGrounded;
 
@@ -210,6 +246,12 @@ public class PlayerControls : MonoBehaviour
             Vector3 offset = new Vector3(0, 2, -1);
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
             
+            // Play hit audio
+            if (hitAudio != null)
+            {
+                audioSource.PlayOneShot(hitAudio);
+            }
+            
             // i know this is not the best way to do this, but i am lazy
             if (playerManager.player1Health <= 0)
             {
@@ -218,6 +260,12 @@ public class PlayerControls : MonoBehaviour
                 // Play death VFX
                 Instantiate(deathVFXPrefab_Skull, transform.position + new Vector3(0, 1.5f, -2), Quaternion.identity);
                 Instantiate(deathVFXPrefab_Explosion, transform.position, Quaternion.identity);
+                
+                // Play death audio
+                if (deathAudio != null)
+                {
+                    audioSource.PlayOneShot(deathAudio);
+                }
             }
         }
         else if (gameObject.CompareTag("P2") && other.CompareTag("Attack Hitbox P1"))
@@ -233,6 +281,12 @@ public class PlayerControls : MonoBehaviour
             Vector3 offset = new Vector3(0, 2, -1);
             Instantiate(hitVFXPrefab, transform.position + offset, Quaternion.identity);
             
+            // Play hit audio
+            if (hitAudio != null)
+            {
+                audioSource.PlayOneShot(hitAudio);
+            }
+            
             if (playerManager.player2Health <= 0)
             {
                 playerManager.OnPlayerDeath("P2");
@@ -240,6 +294,12 @@ public class PlayerControls : MonoBehaviour
                 // Play death VFX
                 Instantiate(deathVFXPrefab_Skull, transform.position + new Vector3(0, 1.5f, -2), Quaternion.identity);
                 Instantiate(deathVFXPrefab_Explosion, transform.position, Quaternion.identity);
+                
+                // Play death audio
+                if (deathAudio != null)
+                {
+                    audioSource.PlayOneShot(deathAudio);
+                }
             }
         }
     }

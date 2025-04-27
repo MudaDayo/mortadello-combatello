@@ -92,6 +92,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6495414362072809638}
     - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: hitAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: cc5ba589c760a0844a202c2437d5b761, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: jumpAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 564930d586f17764c8aca109eb63f1c6, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: deathAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 03f6010a863efd74aaa30681044493dd, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: emoteAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c0402d6b7213c040b9c1f9469447de5, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
+      propertyPath: attackAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 21e9176b9b2894b448070529fdf56763, type: 3}
+    - target: {fileID: 2524772380560282318, guid: 0f9a2a58d93bfc4478b6fcf2660b866e, type: 3}
       propertyPath: hitVFXPrefab
       value: 
       objectReference: {fileID: 119183615461286708, guid: 382c8e53ce2ddef43b49056ac266ab3a, type: 3}
