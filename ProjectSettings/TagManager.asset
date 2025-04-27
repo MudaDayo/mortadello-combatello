@@ -8,6 +8,7 @@ TagManager:
   - Attack Hitbox P2
   - P1
   - P2
+  - zero
   layers:
   - Default
   - TransparentFX

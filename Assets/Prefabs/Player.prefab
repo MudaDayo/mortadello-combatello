@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 2524772380560282318}
   - component: {fileID: 6240373572187000337}
   - component: {fileID: 8513202931058630844}
+  - component: {fileID: 7152326782413581194}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -243,6 +244,19 @@ MonoBehaviour:
   emoteInput: 0
   attackInput: 0
   attacking: 0
+  attackVFXPrefab: {fileID: 0}
+  emoteVFXPrefab: {fileID: 0}
+  hitVFXPrefab: {fileID: 0}
+  jumpVFXPrefab: {fileID: 0}
+  landVFXPrefab: {fileID: 0}
+  deathVFXPrefab_Skull: {fileID: 0}
+  deathVFXPrefab_Explosion: {fileID: 0}
+  jumpAudio: {fileID: 0}
+  attackAudio: {fileID: 0}
+  emoteAudio: {fileID: 0}
+  hitAudio: {fileID: 0}
+  landAudio: {fileID: 0}
+  deathAudio: {fileID: 0}
   attackPrefabP1: {fileID: 5624283710442476390, guid: 961b8b2fa35fa484aa568bc65753eeae, type: 3}
   attackPrefabP2: {fileID: 5624283710442476390, guid: 62714c4c36962c642b077c4a165c46e1, type: 3}
   attackSpawnPoint: {fileID: 228360771792950057}
@@ -296,6 +310,20 @@ CapsuleCollider:
   m_Height: 1.85
   m_Direction: 1
   m_Center: {x: 0.000026015103, y: 0.83, z: -0.000012285076}
+--- !u!114 &7152326782413581194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996865906082240189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b989e71b23bbe4199c5458bcc2a96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  maxDistance: 10
 --- !u!1001 &2043135587769796014
 PrefabInstance:
   m_ObjectHideFlags: 0
