@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
     public Slider player1HealthBar;
     public Slider player2HealthBar;
 
-    public GameObject replayPanel;
+    public GameObject replayPanelCappucino;
+    public GameObject replayPanelVacaSaturno;
 
     public TextMeshProUGUI player1WinsText;
     public TextMeshProUGUI player2WinsText;
@@ -41,6 +42,8 @@ public class UIManager : MonoBehaviour
     {
         // Find the PlayerManager instance
         playerManager = FindFirstObjectByType<PlayerManager>();
+
+        playerManager.uiManager = this; // Set the reference to this UIManager instance in PlayerManager
 
         if (playerManager == null)
         {
@@ -81,5 +84,17 @@ public class UIManager : MonoBehaviour
                 player2RoundWins[i].enabled = i < playerManager.player2Rounds;
             }
         }
+    }
+
+    public void CappucinoWins()
+    {
+        replayPanelCappucino.SetActive(true);
+        Time.timeScale = 0.1f; // Pause the game
+    }
+
+    public void VacaSaturnoWins()
+    {
+        replayPanelVacaSaturno.SetActive(true);
+        Time.timeScale = 0f; // Pause the game
     }
 }
