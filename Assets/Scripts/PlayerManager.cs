@@ -65,6 +65,15 @@ public class PlayerManager : MonoBehaviour
 
             if (player1Rounds >= maxRounds)
             {
+                if(player1Character == 0)
+                {
+                    uiManager.CappucinoWins();
+                }
+                else if(player1Character == 1)
+                {
+                    uiManager.VacaSaturnoWins();
+                }
+
                 player1Wins++;
                 player1Rounds = 0;
                 player2Rounds = 0;
@@ -72,6 +81,15 @@ public class PlayerManager : MonoBehaviour
             }
             else if (player2Rounds >= maxRounds)
             {
+                if(player2Character == 0)
+                {
+                    uiManager.CappucinoWins();
+                }
+                else if(player2Character == 1)
+                {
+                    uiManager.VacaSaturnoWins();
+                }
+
                 player2Wins++;
                 player1Rounds = 0;
                 player2Rounds = 0;
