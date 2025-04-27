@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SelectControls : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class SelectControls : MonoBehaviour
 
     [SerializeField] private float groundCheckDistance = 0.1f;
     public bool isGrounded = true;
+    private bool attackInput = false;
 
     //private Vector3 attackDirection;
     private Vector2 moveInput;
@@ -38,10 +40,10 @@ public class SelectControls : MonoBehaviour
         emoteInput = context.performed;
     }
 
-    // public void OnAttack(InputAction.CallbackContext context)
-    // {
-    //     attackInput = context.performed;
-    // }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        attackInput = context.performed;
+    }
 
     void Start()
     {
@@ -56,7 +58,7 @@ public class SelectControls : MonoBehaviour
     {
         //Debug.Log($"Player {PlayerNumber} is using controller ID: {Gamepad.current?.deviceId ?? -1}");
         Movement();
-        //Attack();
+        Attack();
         Emote();
         isGrounded = IsGrounded();
 
@@ -111,7 +113,13 @@ public class SelectControls : MonoBehaviour
     // private GameObject attackPrefab;
     // [SerializeField] private Transform attackSpawnPoint;
 
-    // private void Attack()
+    private void Attack(){
+        if (attackInput)
+        {
+            SceneManager.LoadScene("Gameplay", LoadSceneMode.Single); // Load the game scene when the player attacks
+
+        }
+    }
     // {
     //     if (attackInput && attackHitboxCooldown <= 0f)
     //     {
